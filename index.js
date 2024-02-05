@@ -80,7 +80,6 @@ function generateReadMe(answers) {
     // Generate GitHub link in Questions section
     const gitLink = generateGitLink(answers.github, answers.email);
 
-    // You can format the content as needed, using the answers provided by the user
     return `
 # ${answers.name}
 
