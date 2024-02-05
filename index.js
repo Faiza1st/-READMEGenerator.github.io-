@@ -47,3 +47,90 @@ const questions = [
     },
 ];
 
+// Create a function to write README file and prompt successfull attempt
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, (error) => {
+        if (error) {
+            console.error(error);
+        } else {
+            console.log('Your README.md file has been successfully generated!');
+        }
+    });
+}
+
+// Create a function to initialize 
+function init() {
+    // Prompt the user for information
+    inquirer.prompt(questions)
+        .then((answers) => {
+            // Generate README content based on user input
+            const readmeContent = generateReadMe(answers);
+
+            // Write README file
+            writeToFile('README.md', readmeContent);
+        })
+        .catch((error) => console.error(error));
+}
+
+// Generate README content based on user input
+function generateReadMe(answers) {
+    // Generate license notice
+    const notice = generateNotice(answers.license);
+
+    // Generate GitHub link in Questions section
+    const gitLink = generateGitLink(answers.github, answers.email);
+
+    // You can format the content as needed, using the answers provided by the user
+    return `
+# ${answers.name}
+
+
+## Description
+${answers.description}
+
+## Table of Contents
+- [Description] (#description)
+- [Project Installation](#installation)
+- [Project Usage](#usage)
+- [License](#license)
+- [Contributing Participants](#contributing)
+- [Questions](#questions)
+
+## Project Installation
+${answers.installation}
+
+## Project Usage
+${answers.usage}
+
+## License
+${notice}
+
+## Contributing Participants
+${answers.contributing}
+
+
+## Questions
+${gitLink}
+
+For additional questions, feel free to reach out through Github or Email:
+- GitHub: [${answers.github}](https://github.com/${answers.github})
+- Email: ${answers.email}
+  `;
+}
+
+
+// Generate a license notice based on the selected license
+function generateNotice(license) {
+    if (license === 'None') {
+        return 'This project is under no license.';
+    }
+    return `This project is covered under the [${license}] license.`;
+}
+
+// Generate a GitHub link in the Questions section
+function generateGitLink(username, email) {
+    return `For additional questions, reach me through [GitHub](https://github.com/${username}) or via email at ${email}.`;
+}
+
+// Function call to initialize app
+init();
