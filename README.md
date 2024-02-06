@@ -16,12 +16,7 @@ The README Generator is a command-line programme written in Node.js that makes i
 This application uses command line to create a promtes for project details and provides users with a file containing a description, instation, usage, licence, contributions and questions. 
 
 ## How to Use Application 
-1 - Clone thre repository into your local device 
-2 - Use the terminal to nagivate to your project directory.
-3 - Once the project opens, nagivate to integrated terminal.
-4 - Run this command in yout terminal "node index.js".
-5 - Follow the promopts to input information about your project 
-6 - A Readme File will be generated. 
+Clone thre repository into your local device, Use the terminal to nagivate to your project directory. Once the project opens, nagivate to integrated terminal. Run this command in yout terminal "node index.js". Follow the promopts to input information about your project  A Readme File will be generated. 
 
 ## License
 This project is covered under the MIT license.
@@ -34,3 +29,4 @@ This project is covered under the MIT license.
 
 ## Recorded Link (Results)
 https://www.youtube.com/watch?v=TC9a-y-DQug
+  
