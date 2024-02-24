@@ -12,6 +12,10 @@ The README Generator is a command-line programme written in Node.js that makes i
 - [Tests](#tests)
 - [Questions](#questions)
 
+## Installation 
+To install dependancies run command : npm install
+
+
 ## Features 
 This application uses command line to create a promtes for project details and provides users with a file containing a description, instation, usage, licence, contributions and questions. 
 
@@ -21,6 +25,9 @@ Clone thre repository into your local device, Use the terminal to nagivate to yo
 ## License
 This project is covered under the MIT license.
 
+## Test 
+To run test, use the following command : npm test 
+
 ## ScreenShots 
 ./Images/1.png
 ./Images/2.png
@@ -28,6 +35,6 @@ This project is covered under the MIT license.
 
 
 ## Recorded Link (Results)
-https://www.youtube.com/watch?v=gQvOWhhGS7w
+https://www.youtube.com/watch?v=QgXXMOTW79E
 
   

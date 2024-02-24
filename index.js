@@ -37,6 +37,16 @@ const questions = [
     },
     {
         type: 'input',
+        name: 'dependencies',
+        message: 'Enter the command to install dependencies (e.g., npm install):',
+    },
+    {
+        type: 'input',
+        name: 'tests',
+        message: 'Enter the command to run tests (e.g., npm test):',
+    },
+    {
+        type: 'input',
         name: 'github',
         message: 'Enter GitHub username:',
     },
@@ -74,47 +84,54 @@ function init() {
 
 // Generate README content based on user input
 function generateReadMe(answers) {
-    // Generate license notice
-    const notice = generateNotice(answers.license);
+    // Generate license and badge notice
+    const badge = generatebadge(answers.license);
+    const licenseNotice = generateNotice(answers.license);
 
     // Generate GitHub link in Questions section
     const gitLink = generateGitLink(answers.github, answers.email);
 
     return `
-# ${answers.name}
+    # ${answers.name}
 
-
-## Description
-${answers.description}
-
-## Table of Contents
-- [Description] (#description)
-- [Project Installation](#installation)
-- [Project Usage](#usage)
-- [License](#license)
-- [Contributing Participants](#contributing)
-- [Questions](#questions)
-
-## Project Installation
-${answers.installation}
-
-## Project Usage
-${answers.usage}
-
-## License
-${notice}
-
-## Contributing Participants
-${answers.contributing}
-
-
-## Questions
-${gitLink}
-
-For additional questions, feel free to reach out through Github or Email:
-- GitHub: [${answers.github}](https://github.com/${answers.github})
-- Email: ${answers.email}
-  `;
+    ${badge}
+    
+    ## Description
+    ${answers.description}
+    
+    ## Table of Contents
+    - [Description](#description)
+    - [Installation](#installation)
+    - [Usage](#usage)
+    - [License](#license)
+    - [Contributing](#contributing)
+    - [Tests](#tests)
+    - [Questions](#questions)
+    
+    ## Installation
+    To install dependencies, run:
+    \`\`\`
+    ${answers.dependencies}
+    \`\`\`
+    
+    ## Usage
+    ${answers.usage}
+    
+    ## License
+    ${licenseNotice}
+    
+    ## Contributing
+    ${answers.contributing}
+    
+    ## Tests
+    To run tests, use the following command:
+    \`\`\`
+    ${answers.tests}
+    \`\`\`
+    
+    ## Questions
+    ${generateGitLink(answers.github, answers.email)}
+      `;
 }
 
 
@@ -125,6 +142,14 @@ function generateNotice(license) {
     }
     return `This project is covered under the [${license}] license.`;
 }
+
+function generatebadge(license) {
+    if (license === 'None') {
+        return '';
+    }
+    return `![License](https://img.shields.io/badge/License-${encodeURIComponent(license)}-brightgreen)`;
+}
+
 
 // Generate a GitHub link in the Questions section
 function generateGitLink(username, email) {
